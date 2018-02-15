@@ -1,9 +1,35 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ScrollProgress from 'scrollprogress';
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      progress: 0
+    };
+  }
+
+  componentDidMount() {
+    this.progressObserver = new ScrollProgress((x, y) => {
+      this.setState({ progress: y * 100 });
+    });
+  }
+
+  componentWillUnmount() {
+    this.progressObserver.destroy();
+  }
   render() {
+    const style = {
+      backgroundColor: '#ef0',
+      transition: 'transform .4s cubic-bezier(.32,.9,.68,.98),background-color 5s cubic-bezier(.32,.9,.68,.98)',
+      height: '6px',
+      position: 'fixed',
+      bottom: 0,
+      borderRight: 'solid 2px #323232',
+      width: `${this.state.progress}%`
+    };
     return (
       <div className="App">
         <header className="App-header">
@@ -25,8 +51,10 @@ Lectus quam id leo in vitae turpis massa sed elementum. Consectetur a erat nam a
 
 Iaculis at erat pellentesque adipiscing commodo elit at imperdiet. Est ullamcorper eget nulla facilisi etiam dignissim. Volutpat commodo sed egestas egestas fringilla phasellus faucibus. Tristique senectus et netus et malesuada. Risus feugiat in ante metus dictum at. Id leo in vitae turpis massa sed. Commodo elit at imperdiet dui accumsan sit amet nulla. Nulla pellentesque dignissim enim sit. Auctor neque vitae tempus quam pellentesque nec. Eu nisl nunc mi ipsum faucibus. Donec massa sapien faucibus et molestie ac feugiat. Phasellus vestibulum lorem sed risus.
         </div>
-        <div className="progress" >
-        </div>
+        <div
+        className="progress-bar"
+        style={ style }
+      />
       </div>
     );
   }

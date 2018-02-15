@@ -31,7 +31,12 @@
   font-size: 42px;
 }
 
-.progress {
+body {
+  /* color: white; */
+  background-color: black;
+}
+
+/* .progress {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -40,4 +45,4 @@
   background: #ef0;
   transition: transform .4s cubic-bezier(.32,.9,.68,.98),background-color 5s cubic-bezier(.32,.9,.68,.98);
   border-right: solid 2px #323232;
-}
+} */
